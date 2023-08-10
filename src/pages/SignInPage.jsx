@@ -2,11 +2,11 @@ import styled from "styled-components";
 import { AiOutlineUser, AiOutlineMail } from "react-icons/ai";
 import { BiLockAlt } from "react-icons/bi";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   return (
     <Container>
       <section>
@@ -37,6 +37,7 @@ export default function SignIn() {
               required
             ></input>
           </div>
+          <button type="submit">Login</button>
         </form>
       </section>
       <hr
@@ -49,13 +50,16 @@ export default function SignIn() {
         }}
       />
       <p>
-        Não tem uma conta? <span>Cadastre-se</span>
+        Não tem uma conta?{" "}
+        <Link to="/signup" style={{ textDecoration: "none" }}>
+          <span>Cadastre-se!</span>
+        </Link>
       </p>
     </Container>
   );
 }
 
-const Container = styled.div`
+export const Container = styled.div`
   width: 100vw;
   height: 100vh;
   background: linear-gradient(to left, #acb6e5, #74ebd5);
@@ -65,13 +69,26 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
 
+  button {
+    width: 290px;
+    height: 45px;
+    border: none;
+    border-radius: 10px;
+    background-color: #136a8a;
+
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    color: #fff;
+    font-size: 20px;
+  }
+
   p {
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     color: gray;
     font-size: 15px;
     span {
-      color: blue;
+      color: #136a8a;
 
       &:hover {
         cursor: pointer;
@@ -83,7 +100,7 @@ const Container = styled.div`
     width: 30%;
     height: auto;
     background-color: rgba(255, 255, 255, 0.4);
-    gap: 20px;
+    gap: 10px;
     padding-bottom: 40px;
     border-radius: 10px;
 
@@ -101,7 +118,7 @@ const Container = styled.div`
 
     form {
       width: 100%;
-      gap: 20px;
+      gap: 15px;
 
       display: flex;
       flex-direction: column;
@@ -121,7 +138,7 @@ const Container = styled.div`
 
         input {
           width: 250px;
-          height: 55px;
+          height: 45px;
           border: none;
           border-radius: 10px;
 

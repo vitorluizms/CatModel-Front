@@ -93,7 +93,7 @@ export default function SignUp() {
               name="name"
               placeholder="Nome"
               type="text"
-              minLength={4}
+              minLength={5}
               value={name}
               onChange={(e) => setName(e.target.value)}
               required

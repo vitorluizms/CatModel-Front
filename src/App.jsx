@@ -3,6 +3,8 @@ import SignIn from "./pages/SignInPage.jsx";
 import SignUp from "./pages/SignUpPage.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Home from "./pages/HomePage.jsx";
+import UserProvider from "./Contexts/userContext.jsx";
 
 function App() {
   return (
@@ -18,10 +20,13 @@ function App() {
         draggable
         pauseOnHover
       />
-      <Routes>
-        <Route path="/" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
-      </Routes>
+      <UserProvider>
+        <Routes>
+          <Route path="/" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/home" element={<Home />} />
+        </Routes>
+      </UserProvider>
     </BrowserRouter>
   );
 }

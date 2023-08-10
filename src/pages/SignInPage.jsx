@@ -1,18 +1,55 @@
 import styled from "styled-components";
 import { AiOutlineUser, AiOutlineMail } from "react-icons/ai";
 import { BiLockAlt } from "react-icons/bi";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { UserContext } from "../Contexts/userContext";
+import { toast } from "react-toastify";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { user, setUser } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const signIn = (e) => {
+    e.preventDefault();
+    const body = {
+      email,
+      password,
+    };
+    axios
+      .post(`${import.meta.env.VITE_API_URL}/signin`, body)
+      .then((answer) => {
+        toast.success(answer.data, {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+        });
+        localStorage.setItem("user", JSON.stringify(answer.data));
+        setUser(answer.data);
+        navigate("/home");
+      })
+      .catch(answer => {
+        console.log(answer)
+        toast.error(answer.response.data, {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+        });
+      });
+  };
   return (
     <Container>
       <section>
         <StyledIcon />
         <h1>Login</h1>
-        <form>
+        <form onSubmit={signIn}>
           <div>
             <AiOutlineMail style={{ color: "#000", fontSize: "20px" }} />
             <input

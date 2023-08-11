@@ -1,13 +1,15 @@
+import { useState } from "react";
 import styled from "styled-components";
-import TopBar from "../components/TopBar";
+import NavBar from "../components/NavBar";
 
 export default function Home() {
+  const [search, setSearch] = useState("");
+
   return (
-    <Container>
-      <header>
-        <TopBar></TopBar>
-      </header>
-    </Container>
+    <>
+      <NavBar />
+      <Container></Container>
+    </>
   );
 }
 

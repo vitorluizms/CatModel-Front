@@ -64,7 +64,7 @@ export default function SignUp() {
     axios
       .post(`${import.meta.env.VITE_API_URL}/signup`, body)
       .then((answer) => {
-        toast.success(answer.data, {
+        toast.success("Cadastro realizado com sucesso", {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 3000,
           hideProgressBar: false,

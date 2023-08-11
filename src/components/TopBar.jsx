@@ -5,7 +5,7 @@ export default function TopBar() {
   return (
     <Container>
       <section>
-        <Link to={"/home"} style={{ textDecoration: "none"}}>
+        <Link to={"/home"} style={{ textDecoration: "none" }}>
           <h1>CatModels</h1>
         </Link>
         <article>
@@ -54,6 +54,7 @@ const Container = styled.nav`
       background-color: transparent;
       border: 1px solid #000;
       border-radius: 5px;
+      cursor: pointer;
 
       font-family: "Comic Neue", cursive;
       color: #000;

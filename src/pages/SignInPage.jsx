@@ -26,7 +26,7 @@ export default function SignIn() {
     axios
       .post(`${import.meta.env.VITE_API_URL}/signin`, body)
       .then((answer) => {
-        toast.success(answer.data, {
+        toast.success("Login feito com sucesso!", {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 3000,
           hideProgressBar: false,
@@ -201,7 +201,7 @@ export const Container = styled.div`
   }
 
   section {
-    width: 30%;
+    width: 350px;
     height: auto;
     background-color: rgba(255, 255, 255, 0.3);
     gap: 10px;

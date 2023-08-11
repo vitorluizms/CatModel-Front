@@ -7,11 +7,12 @@ import {
 } from "react-icons/ai";
 import { BiLockAlt } from "react-icons/bi";
 import { useState } from "react";
-import { Container } from "./SignInPage";
+import { Container, InputContainer } from "./SignInPage";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import { TailSpin } from "react-loader-spinner";
 
 export default function SignUp() {
   const [name, setName] = useState("");
@@ -20,11 +21,12 @@ export default function SignUp() {
   const [confirmPass, setConfirmPass] = useState("");
   const [cpf, setCpf] = useState("");
   const [contact, setContact] = useState("");
-  const [valid, setValid] = useState(true);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const signUp = (e) => {
     e.preventDefault();
+    setLoading(true);
     if (password !== confirmPass)
       return toast.error("Senhas não coincidem!", {
         position: toast.POSITION.TOP_CENTER,
@@ -78,15 +80,16 @@ export default function SignUp() {
           closeOnClick: false,
           pauseOnHover: true,
         });
-      });
+      })
+      .finally(() => setLoading(false))
   };
   return (
-    <Container valid={valid}>
+    <Container loading={loading}>
       <section>
         <StyledIcon />
         <h1>Cadastro</h1>
         <form onSubmit={signUp}>
-          <div>
+          <InputContainer>
             <AiOutlineMail style={{ color: "#000", fontSize: "20px" }} />
             <input
               id="name"
@@ -98,8 +101,8 @@ export default function SignUp() {
               onChange={(e) => setName(e.target.value)}
               required
             ></input>
-          </div>
-          <div>
+          </InputContainer>
+          <InputContainer>
             <AiOutlineMail style={{ color: "#000", fontSize: "20px" }} />
             <input
               id="email"
@@ -110,8 +113,8 @@ export default function SignUp() {
               onChange={(e) => setEmail(e.target.value)}
               required
             ></input>
-          </div>
-          <div>
+          </InputContainer>
+          <InputContainer>
             <AiOutlineUser style={{ color: "#000", fontSize: "20px" }} />
             <input
               id="cpf"
@@ -124,8 +127,8 @@ export default function SignUp() {
               onChange={(e) => setCpf(e.target.value)}
               required
             />
-          </div>
-          <div>
+          </InputContainer>
+          <InputContainer>
             <AiOutlineContacts style={{ color: "#000", fontSize: "20px" }} />
             <input
               id="contact"
@@ -138,8 +141,8 @@ export default function SignUp() {
               onChange={(e) => setContact(e.target.value)}
               required
             />
-          </div>
-          <div>
+          </InputContainer>
+          <InputContainer>
             <BiLockAlt style={{ color: "#000", fontSize: "20px" }} />
             <input
               id="password"
@@ -151,8 +154,8 @@ export default function SignUp() {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-          </div>
-          <div>
+          </InputContainer>
+          <InputContainer>
             <BiLockAlt style={{ color: "#000", fontSize: "20px" }} />
             <input
               id="confirmation"
@@ -165,8 +168,23 @@ export default function SignUp() {
               }}
               required
             />
-          </div>
-          <button>Cadastrar</button>
+          </InputContainer>
+          <button type="submit" disabled={loading}>
+            {loading === false ? (
+              "Cadastrar"
+            ) : (
+              <TailSpin
+                height="40"
+                width="40"
+                color="#4fa94d"
+                ariaLabel="tail-spin-loading"
+                radius="1"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+              />
+            )}
+          </button>
         </form>
       </section>
       <hr

@@ -6,15 +6,18 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../Contexts/userContext";
 import { toast } from "react-toastify";
+import { TailSpin } from "react-loader-spinner";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { user, setUser } = useContext(UserContext);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const signIn = (e) => {
     e.preventDefault();
+    setLoading(true);
     const body = {
       email,
       password,
@@ -33,8 +36,7 @@ export default function SignIn() {
         setUser(answer.data);
         navigate("/home");
       })
-      .catch(answer => {
-        console.log(answer)
+      .catch((answer) => {
         toast.error(answer.response.data, {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 3000,
@@ -42,15 +44,16 @@ export default function SignIn() {
           closeOnClick: false,
           pauseOnHover: true,
         });
-      });
+      })
+      .finally(() => setLoading(false));
   };
   return (
-    <Container>
+    <Container loading={loading}>
       <section>
         <StyledIcon />
         <h1>Login</h1>
         <form onSubmit={signIn}>
-          <div>
+          <InputContainer>
             <AiOutlineMail style={{ color: "#000", fontSize: "20px" }} />
             <input
               id="email"
@@ -61,8 +64,8 @@ export default function SignIn() {
               onChange={(e) => setEmail(e.target.value)}
               required
             ></input>
-          </div>
-          <div>
+          </InputContainer>
+          <InputContainer>
             <BiLockAlt style={{ color: "#000", fontSize: "20px" }} />
             <input
               id="password"
@@ -73,8 +76,24 @@ export default function SignIn() {
               onChange={(e) => setPassword(e.target.value)}
               required
             ></input>
-          </div>
-          <button type="submit">Login</button>
+          </InputContainer>
+          <button type="submit" disabled={loading}>
+            {loading === false ? (
+              "Login"
+            ) : (
+              <TailSpin
+                height="40"
+                width="45"
+                color="#4fa94d"
+                ariaLabel="tail-spin-loading"
+                radius="1"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+                alignSelf="center"
+              />
+            )}
+          </button>
         </form>
       </section>
       <hr
@@ -96,6 +115,34 @@ export default function SignIn() {
   );
 }
 
+export const InputContainer = styled.div`
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding-left: 10px;
+  background-color: white;
+  border-radius: 10px;
+  gap: 10px;
+
+  input {
+    width: 250px;
+    height: 45px;
+    border: none;
+    border-radius: 10px;
+
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    color: black;
+    font-size: 15px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+`;
+
 export const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -111,12 +158,22 @@ export const Container = styled.div`
     height: 45px;
     border: none;
     border-radius: 10px;
-    background-color: #136a8a;
+    background-color: ${(props) =>
+      props.loading === false ? "#136a8a" : "#535353"};
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     color: #fff;
     font-size: 20px;
+
+    &:hover {
+      cursor: ${(props) => (props.loading === false ? "pointer" : "progress")};
+      background-color: ${(props) =>
+        (props.loading === false ? "#3fa4bb" : "#535353")};
+    }
   }
 
   p {
@@ -161,34 +218,6 @@ export const Container = styled.div`
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
-
-      div {
-        width: auto;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        padding-left: 10px;
-        background-color: white;
-        border-radius: 10px;
-        gap: 10px;
-
-        input {
-          width: 250px;
-          height: 45px;
-          border: none;
-          border-radius: 10px;
-
-          font-family: "Roboto", sans-serif;
-          font-weight: 400;
-          color: black;
-          font-size: 15px;
-
-          &:focus {
-            outline: none;
-          }
-        }
-      }
     }
   }
 `;

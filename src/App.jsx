@@ -1,10 +1,10 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import SignIn from "./pages/SignInPage.jsx";
-import SignUp from "./pages/SignUpPage.jsx";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Home from "./pages/HomePage.jsx";
 import UserProvider from "./Contexts/userContext.jsx";
+import Home from "./pages/HomePage.jsx";
+import SignIn from "./pages/SignInPage.jsx";
+import SignUp from "./pages/SignUpPage.jsx";
 
 function App() {
   return (

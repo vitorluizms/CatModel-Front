@@ -1,12 +1,13 @@
-import styled from "styled-components";
-import { AiOutlineUser, AiOutlineMail } from "react-icons/ai";
-import { BiLockAlt } from "react-icons/bi";
-import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { UserContext } from "../Contexts/userContext";
-import { toast } from "react-toastify";
+import { useContext, useState } from "react";
+import { AiOutlineMail, AiOutlineUser } from "react-icons/ai";
+import { BiLockAlt } from "react-icons/bi";
 import { TailSpin } from "react-loader-spinner";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import styled from "styled-components";
+import { UserContext } from "../Contexts/userContext";
+import TopBar from "../components/TopBar";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
@@ -48,70 +49,73 @@ export default function SignIn() {
       .finally(() => setLoading(false));
   };
   return (
-    <Container loading={loading}>
-      <section>
-        <StyledIcon />
-        <h1>Login</h1>
-        <form onSubmit={signIn}>
-          <InputContainer>
-            <AiOutlineMail style={{ color: "#000", fontSize: "20px" }} />
-            <input
-              id="email"
-              name="email"
-              placeholder="Email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            ></input>
-          </InputContainer>
-          <InputContainer>
-            <BiLockAlt style={{ color: "#000", fontSize: "20px" }} />
-            <input
-              id="password"
-              name="password"
-              placeholder="Senha"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            ></input>
-          </InputContainer>
-          <button type="submit" disabled={loading}>
-            {loading === false ? (
-              "Login"
-            ) : (
-              <TailSpin
-                height="40"
-                width="45"
-                color="#4fa94d"
-                ariaLabel="tail-spin-loading"
-                radius="1"
-                wrapperStyle={{}}
-                wrapperClass=""
-                visible={true}
-                alignSelf="center"
-              />
-            )}
-          </button>
-        </form>
-      </section>
-      <hr
-        style={{
-          width: "30%",
-          backgroundColor: "white",
-          marginTop: "40px",
-          border: "none",
-          height: "1px",
-        }}
-      />
-      <p>
-        Não tem uma conta?{" "}
-        <Link to="/signup" style={{ textDecoration: "none" }}>
-          <span>Cadastre-se!</span>
-        </Link>
-      </p>
-    </Container>
+    <>
+      <TopBar />
+      <Container loading={loading}>
+        <section>
+          <StyledIcon />
+          <h1>Login</h1>
+          <form onSubmit={signIn}>
+            <InputContainer>
+              <AiOutlineMail style={{ color: "#000", fontSize: "20px" }} />
+              <input
+                id="email"
+                name="email"
+                placeholder="Email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              ></input>
+            </InputContainer>
+            <InputContainer>
+              <BiLockAlt style={{ color: "#000", fontSize: "20px" }} />
+              <input
+                id="password"
+                name="password"
+                placeholder="Senha"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              ></input>
+            </InputContainer>
+            <button type="submit" disabled={loading}>
+              {loading === false ? (
+                "Login"
+              ) : (
+                <TailSpin
+                  height="40"
+                  width="45"
+                  color="#4fa94d"
+                  ariaLabel="tail-spin-loading"
+                  radius="1"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                  visible={true}
+                  alignSelf="center"
+                />
+              )}
+            </button>
+          </form>
+        </section>
+        <hr
+          style={{
+            width: "30%",
+            backgroundColor: "white",
+            marginTop: "40px",
+            border: "none",
+            height: "1px",
+          }}
+        />
+        <p>
+          Não tem uma conta?{" "}
+          <Link to="/signup" style={{ textDecoration: "none" }}>
+            <span>Cadastre-se!</span>
+          </Link>
+        </p>
+      </Container>
+    </>
   );
 }
 
@@ -124,15 +128,15 @@ export const InputContainer = styled.div`
   padding-left: 10px;
   background-color: white;
   border-radius: 10px;
-  gap: 10px;
+  gap: 5px;
 
   input {
     width: 250px;
-    height: 45px;
+    height: 37px;
     border: none;
     border-radius: 10px;
 
-    font-family: "Roboto", sans-serif;
+    font-family: "Comic Neue", cursive;
     font-weight: 400;
     color: black;
     font-size: 15px;
@@ -145,8 +149,13 @@ export const InputContainer = styled.div`
 
 export const Container = styled.div`
   width: 100vw;
-  height: 100vh;
-  background: linear-gradient(to left, #acb6e5, #74ebd5);
+  min-height: 100vh;
+  /* background: linear-gradient(to left, #acb6e5, #74ebd5); */
+  background-image: radial-gradient(
+    circle 588px at 31.7% 40.2%,
+    rgba(225, 200, 239, 1) 21.4%,
+    rgba(163, 225, 233, 1) 57.1%
+  );
 
   display: flex;
   flex-direction: column;
@@ -155,7 +164,7 @@ export const Container = styled.div`
 
   button {
     width: 290px;
-    height: 45px;
+    height: 40px;
     border: none;
     border-radius: 10px;
     background-color: ${(props) =>
@@ -164,23 +173,24 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
 
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
+    font-family: "Comic Neue", cursive;
+    font-weight: 700;
     color: #fff;
     font-size: 20px;
 
     &:hover {
       cursor: ${(props) => (props.loading === false ? "pointer" : "progress")};
       background-color: ${(props) =>
-        (props.loading === false ? "#3fa4bb" : "#535353")};
+        props.loading === false ? "#3fa4bb" : "#535353"};
     }
   }
 
   p {
-    font-family: "Roboto", sans-serif;
+    font-family: "Comic Neue", cursive;
     font-weight: 400;
     color: gray;
     font-size: 15px;
+    margin-bottom: 10px;
     span {
       color: #136a8a;
 
@@ -193,7 +203,7 @@ export const Container = styled.div`
   section {
     width: 30%;
     height: auto;
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.3);
     gap: 10px;
     padding-bottom: 40px;
     border-radius: 10px;
@@ -204,9 +214,9 @@ export const Container = styled.div`
     align-items: center;
 
     h1 {
-      font-family: "Roboto", sans-serif;
-      font-weight: 400;
-      color: gray;
+      font-family: "Comic Neue", cursive;
+      font-weight: 700;
+      color: #000;
       font-size: 30px;
     }
 

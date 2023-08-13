@@ -1,10 +1,16 @@
 import "animate.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 export default function CatContainer(props) {
-  const { mainPic, name } = props.cat;
+  const { mainPic, name, id } = props.cat;
   const [isActive, setActive] = useState(false);
+  const navigate = useNavigate();
+
+  const navigateToCatPage = () => {
+    navigate(`/cat/${id}`, { state: { id: id } });
+  };
 
   return (
     <Container
@@ -12,11 +18,11 @@ export default function CatContainer(props) {
       onMouseEnter={() => setActive(true)}
       onMouseLeave={() => setActive(false)}
     >
-      <img src={mainPic} alt={name} />
+      <img src={mainPic} alt={name} onClick={navigateToCatPage} />
       <div>
-        <h1>{name}</h1>
+        <h1 onClick={navigateToCatPage}>{name}</h1>
       </div>
-      <button class="animate_animated animate_bounceinup">Ver mais</button>
+      <button onClick={navigateToCatPage}>Ver mais</button>
     </Container>
   );
 }

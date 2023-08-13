@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UserProvider from "./Contexts/userContext.jsx";
+import CatPage from "./pages/CatPage.jsx";
 import Home from "./pages/HomePage.jsx";
 import SignIn from "./pages/SignInPage.jsx";
 import SignUp from "./pages/SignUpPage.jsx";
@@ -25,6 +26,7 @@ function App() {
           <Route path="/" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/cat/:id" element={<CatPage />} />
         </Routes>
       </UserProvider>
     </BrowserRouter>

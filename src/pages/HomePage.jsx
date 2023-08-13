@@ -9,22 +9,20 @@ import CatContainer from "./CatContainer.jsx";
 export default function Home() {
   const { user, setUser } = useContext(UserContext);
   const [cats, setCats] = useState([]);
+
   useEffect(() => getCats(), []);
   const getCats = () => {
     axios
-      .get(`${import.meta.env.VITE_API_URL}/cats`, {
-        headers: { authorization: `Bearer ${user.token}` },
-      })
+      .get(`${import.meta.env.VITE_API_URL}/cats`)
       .then((response) => setCats(response.data))
       .catch((response) => {
-        toast.error(response.reponse.data),
-          {
-            position: toast.POSITION.TOP_CENTER,
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: false,
-            pauseOnHover: true,
-          };
+        toast.error(response.reponse.data, {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+        });
       });
   };
 

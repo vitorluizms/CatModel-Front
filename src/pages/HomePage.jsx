@@ -1,17 +1,32 @@
-import { useState } from "react";
+import axios from "axios";
+import { useContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import styled from "styled-components";
+import { UserContext } from "../Contexts/userContext";
 import NavBar from "../components/NavBar";
-import CatPage from "./CatPage";
+import CatContainer from "./CatContainer.jsx";
 
 export default function Home() {
-  const [cats, setCats] = useState([
-    {
-      id: 1,
-      name: "Gatinho",
-      image:
-        "https://www.petz.com.br/blog/wp-content/uploads/2019/07/vida-de-gato.jpg",
-    },
-  ]);
+  const { user, setUser } = useContext(UserContext);
+  const [cats, setCats] = useState([]);
+  useEffect(() => getCats(), []);
+  const getCats = () => {
+    axios
+      .get(`${import.meta.env.VITE_API_URL}/cats`, {
+        headers: { authorization: `Bearer ${user.token}` },
+      })
+      .then((response) => setCats(response.data))
+      .catch((response) => {
+        toast.error(response.reponse.data),
+          {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+          };
+      });
+  };
 
   return (
     <>
@@ -19,7 +34,7 @@ export default function Home() {
       <Container>
         <section>
           {cats.map((cat) => (
-            <CatPage cat={cat} key={cat.id} />
+            <CatContainer cat={cat} key={cat.id} />
           ))}
         </section>
       </Container>
@@ -40,19 +55,17 @@ const Container = styled.main`
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;  
+  flex-wrap: wrap;
 
   section {
     width: 85%;
-    height: auto;
+    height: 100%;
     background-color: rgba(255, 255, 255, 0.3);
     gap: 20px;
     padding: 20px;
     border-radius: 10px;
 
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+    justify-content: flex-start;
   }
 `;

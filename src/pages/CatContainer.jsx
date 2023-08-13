@@ -2,8 +2,8 @@ import "animate.css";
 import { useState } from "react";
 import styled from "styled-components";
 
-export default function CatPage(props) {
-  const { image, name } = props.cat;
+export default function CatContainer(props) {
+  const { mainPic, name } = props.cat;
   const [isActive, setActive] = useState(false);
 
   return (
@@ -12,7 +12,7 @@ export default function CatPage(props) {
       onMouseEnter={() => setActive(true)}
       onMouseLeave={() => setActive(false)}
     >
-      <img src={image} alt={name} />
+      <img src={mainPic} alt={name} />
       <div>
         <h1>{name}</h1>
       </div>
@@ -22,14 +22,13 @@ export default function CatPage(props) {
 }
 
 const Container = styled.article`
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 100%;
   border-radius: 10px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: transparent;
   div {
     width: 100%;
     height: 40px;
@@ -41,22 +40,31 @@ const Container = styled.article`
       font-weight: 700;
       letter-spacing: 1px;
       cursor: pointer;
+
+      &:hover {
+        color: #ea7200;
+      }
     }
   }
 
   img {
-    width: 100%;
-    height: 150px;
+    width: 250px;
+    height: 250px;
     border-radius: 10px;
     cursor: pointer;
   }
   button {
-    width: 100%;
+    width: 98%;
     height: 30px;
     border-radius: 7px;
     border: none;
 
+    font-family: "Comic Neue", cursive;
     color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
     background-color: #692db6;
 
     &:hover {
@@ -64,6 +72,7 @@ const Container = styled.article`
       display: flex;
       justify-content: center;
       align-items: center;
+      transform: scale(1.05);
     }
   }
 `;

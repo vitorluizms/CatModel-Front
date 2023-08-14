@@ -44,30 +44,22 @@ export default function UserCats() {
       </>
     );
   else {
-    if (cats.length === 0)
-      return (
-        <>
-          <NavBar>
-            <Container>
-              <h1>Você não possui nenhum modelo cadastrado!</h1>
-            </Container>
-          </NavBar>
-        </>
-      );
-    else {
-      return (
-        <>
-          <NavBar />
-          <Container>
+    return (
+      <>
+        <NavBar />
+        <Container>
+          {cats.length === 0 ? (
+            <h2>Você não possui modelos cadastrados</h2>
+          ) : (
             <section>
               {cats.map((cat) => (
                 <UserCat cat={cat} key={cat.id} getCats={getUserCats} />
               ))}
             </section>
-          </Container>
-        </>
-      );
-    }
+          )}
+        </Container>
+      </>
+    );
   }
 }
 
@@ -87,6 +79,14 @@ const Container = styled.main`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  h2 {
+    font-family: "Comic Neue", cursive;
+    color: #000;
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
 
   section {
     width: 80%;

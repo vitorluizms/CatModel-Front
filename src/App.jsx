@@ -25,9 +25,9 @@ function App() {
       />
       <UserProvider>
         <Routes>
-          <Route path="/" element={<SignIn />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/home" element={<Home />} />
           <Route path="/cat/:id" element={<CatPage />} />
           <Route path="/create-cat" element={<CreateCat />} />
           <Route path="/cats/me" element={<UserCats />} />

@@ -71,7 +71,7 @@ export default function SignUp() {
           closeOnClick: false,
           pauseOnHover: true,
         });
-        navigate("/");
+        navigate("/signin");
       })
       .catch((answer) => {
         toast.error(answer.response.data, {
@@ -201,7 +201,7 @@ export default function SignUp() {
         />
         <p>
           Já tem uma conta?{" "}
-          <Link to="/" style={{ textDecoration: "none" }}>
+          <Link to="/signin" style={{ textDecoration: "none" }}>
             <span>Faça login!</span>
           </Link>
         </p>

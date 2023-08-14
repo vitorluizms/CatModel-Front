@@ -35,7 +35,7 @@ export default function SignIn() {
         });
         localStorage.setItem("user", JSON.stringify(answer.data));
         setUser(answer.data);
-        navigate("/home");
+        navigate("/");
       })
       .catch((answer) => {
         toast.error(answer.response.data, {

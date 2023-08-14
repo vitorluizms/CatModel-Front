@@ -23,18 +23,18 @@ export default function NavBar() {
       closeOnClick: false,
       pauseOnHover: true,
     });
-    navigate("/home");
+    navigate("/");
   }
   return (
     <TopBar>
       <section>
         <article>
-          <Link to={"/home"} style={{ textDecoration: "none" }}>
+          <Link to={"/"} style={{ textDecoration: "none" }}>
             <h1>CatModels</h1>
           </Link>
         </article>
         <article>
-          <Link to={"/home"} style={{ textDecoration: "none" }}>
+          <Link to={"/"} style={{ textDecoration: "none" }}>
             <h2>Home</h2>
           </Link>
           <h2>Filtrar</h2>
@@ -76,7 +76,7 @@ export default function NavBar() {
             />
           </Link>
           {user === null ? (
-            <Link to={"/"} style={{ textDecoration: "none" }}>
+            <Link to={"/signin"} style={{ textDecoration: "none" }}>
               <button>Login</button>
             </Link>
           ) : (

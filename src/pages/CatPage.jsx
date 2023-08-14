@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { TailSpin } from "react-loader-spinner";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import styled from "styled-components";
 import NavBar from "../components/NavBar";
 
@@ -16,7 +18,6 @@ export default function CatPage() {
       .get(`${import.meta.env.VITE_API_URL}/cat/${id}`)
       .then((response) => {
         setCat(response.data);
-        console.log(response.data);
       })
       .catch((response) =>
         toast.error(response.reponse.data, {
@@ -28,29 +29,39 @@ export default function CatPage() {
         })
       );
   };
-  return (
-    <>
-      <NavBar />
-      <Container>
-        <section>
-          <article>
-            <img src={cat.mainPic} alt={cat.name} />
-          </article>
-          <article>
-            <h1>{cat.name}</h1>
-            <ul>
-              <li>Cor: {cat.color}</li>
-              <li>Idade: {cat.age}</li>
-              <li>Raça: {cat.raceName}</li>
-              <li>Tamanho: {cat.size}</li>
-            </ul>
-            <span>Descrição:</span>
-            <p>{cat.description}</p>
-          </article>
-        </section>
-      </Container>
-    </>
-  );
+  if (cat.length === 0)
+    return (
+      <>
+        <NavBar />
+        <Container>
+          <TailSpin />
+        </Container>
+      </>
+    );
+  else
+    return (
+      <>
+        <NavBar />
+        <Container>
+          <section>
+            <article>
+              <img src={cat.mainPic} alt={cat.name} />
+            </article>
+            <article>
+              <h1>{cat.name}</h1>
+              <ul>
+                <li>Cor: {cat.color}</li>
+                <li>Idade: {cat.age}</li>
+                <li>Raça: {cat.raceName}</li>
+                <li>Tamanho: {cat.size}</li>
+              </ul>
+              <span>Descrição:</span>
+              <p>{cat.description}</p>
+            </article>
+          </section>
+        </Container>
+      </>
+    );
 }
 
 const Container = styled.main`

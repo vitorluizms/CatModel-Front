@@ -38,13 +38,16 @@ export default function NavBar() {
           </div>
         </form>
         <article>
-          <IoIosAddCircleOutline
-            style={{
-              marginRight: "-20px",
-              fontSize: "25px",
-              cursor: "pointer",
-            }}
-          />
+          <Link to={"/create-cat"} style={{ textDecoration: "none" }}>
+            <IoIosAddCircleOutline
+              style={{
+                marginRight: "-20px",
+                fontSize: "25px",
+                cursor: "pointer",
+                color: "#000",
+              }}
+            />
+          </Link>
           <HiOutlineUser
             style={{
               marginRight: "-20px",
@@ -75,7 +78,7 @@ const StyledIcon = styled(AiOutlineSearch)`
 
 const TopBar = styled.nav`
   width: 100%;
-  height: 80px;
+  height: 60px;
   background-color: #f5f5f5;
 
   position: fixed;

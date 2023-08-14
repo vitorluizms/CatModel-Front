@@ -18,7 +18,9 @@ export default function CatContainer(props) {
       onMouseEnter={() => setActive(true)}
       onMouseLeave={() => setActive(false)}
     >
-      <img src={mainPic} alt={name} onClick={navigateToCatPage} />
+      <figure onClick={navigateToCatPage}>
+        <img src={mainPic} alt={name} />
+      </figure>
       <div>
         <h1 onClick={navigateToCatPage}>{name}</h1>
       </div>
@@ -40,6 +42,7 @@ const Container = styled.article`
     height: 40px;
     padding: 10px;
     h1 {
+      width: auto;
       font-family: "Comic Neue", cursive;
       color: #000;
       font-size: 13px;
@@ -53,11 +56,22 @@ const Container = styled.article`
     }
   }
 
-  img {
+  figure {
     width: 250px;
-    height: 250px;
+    border: 1px dashed #fff;
     border-radius: 10px;
-    cursor: pointer;
+    padding: 10px;
+    box-sizing: border-box;
+
+    &:hover {
+      border: 1px dashed #692db6;
+    }
+    img {
+      width: 230px;
+      height: 230px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
   }
   button {
     width: 98%;

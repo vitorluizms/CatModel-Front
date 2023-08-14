@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
+import { TailSpin } from "react-loader-spinner";
 import { toast } from "react-toastify";
 import styled from "styled-components";
 import { UserContext } from "../Contexts/userContext";
@@ -26,6 +27,15 @@ export default function Home() {
       });
   };
 
+  if (cats.length === 0)
+    return (
+      <>
+        <NavBar />
+        <Container>
+          <TailSpin />
+        </Container>
+      </>
+    );
   return (
     <>
       <NavBar />

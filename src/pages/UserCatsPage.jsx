@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { TailSpin } from "react-loader-spinner";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import styled from "styled-components";
 import { UserContext } from "../Contexts/userContext";
@@ -11,7 +12,22 @@ export default function UserCats() {
   const [cats, setCats] = useState([]);
   const { user, setUser } = useContext(UserContext);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
+    if (user === null) {
+      toast.error(
+        "Você não pode acessar essa página enquando estiver deslogado!",
+        {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+        }
+      );
+      navigate("/");
+      return;
+    }
     setLoading(true);
     getUserCats();
   }, []);

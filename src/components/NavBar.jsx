@@ -1,13 +1,30 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
+import { BiLogOut } from "react-icons/bi";
 import { HiOutlineUser } from "react-icons/hi";
 import { IoIosAddCircleOutline } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import styled from "styled-components";
+import { UserContext } from "../Contexts/userContext";
 
 export default function NavBar() {
   const [search, setSearch] = useState("");
+  const { user, setUser } = useContext(UserContext);
+  const navigate = useNavigate();
 
+  function logOut() {
+    localStorage.removeItem("user");
+    setUser(null);
+    toast.success("LogOut realizado!", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+    });
+    navigate("/home");
+  }
   return (
     <TopBar>
       <section>
@@ -58,9 +75,20 @@ export default function NavBar() {
               }}
             />
           </Link>
-          <Link to={"/"} style={{ textDecoration: "none" }}>
-            <button>Login</button>
-          </Link>
+          {user === null ? (
+            <Link to={"/"} style={{ textDecoration: "none" }}>
+              <button>Login</button>
+            </Link>
+          ) : (
+            <BiLogOut
+              style={{
+                fontSize: "25px",
+                cursor: "pointer",
+                color: "#000",
+              }}
+              onClick={logOut}
+            />
+          )}
         </article>
       </section>
     </TopBar>

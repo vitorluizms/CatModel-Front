@@ -1,11 +1,9 @@
 import "animate.css";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 export default function CatContainer(props) {
   const { mainPic, name, id } = props.cat;
-  const [isActive, setActive] = useState(false);
   const navigate = useNavigate();
 
   const navigateToCatPage = () => {
@@ -14,9 +12,6 @@ export default function CatContainer(props) {
 
   return (
     <Container
-      isActive={isActive}
-      onMouseEnter={() => setActive(true)}
-      onMouseLeave={() => setActive(false)}
     >
       <figure onClick={navigateToCatPage}>
         <img src={mainPic} alt={name} />

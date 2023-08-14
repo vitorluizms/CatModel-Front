@@ -12,7 +12,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styled from "styled-components";
-import TopBar from "../components/TopBar";
+import NavBar from "../components/NavBar";
 import { Container, InputContainer } from "./SignInPage";
 
 export default function SignUp() {
@@ -86,7 +86,7 @@ export default function SignUp() {
   };
   return (
     <>
-      <TopBar />
+      <NavBar />
       <Container loading={loading}>
         <section style={{ marginTop: "125px" }}>
           <StyledIcon />

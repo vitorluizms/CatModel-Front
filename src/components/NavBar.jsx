@@ -48,13 +48,16 @@ export default function NavBar() {
               }}
             />
           </Link>
-          <HiOutlineUser
-            style={{
-              marginRight: "-20px",
-              fontSize: "25px",
-              cursor: "pointer",
-            }}
-          />
+          <Link to={"/cats/me"}>
+            <HiOutlineUser
+              style={{
+                marginRight: "-20px",
+                fontSize: "25px",
+                cursor: "pointer",
+                color: "#000",
+              }}
+            />
+          </Link>
           <Link to={"/"} style={{ textDecoration: "none" }}>
             <button>Login</button>
           </Link>

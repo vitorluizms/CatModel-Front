@@ -7,6 +7,7 @@ import CreateCat from "./pages/CreateCat.jsx";
 import Home from "./pages/HomePage.jsx";
 import SignIn from "./pages/SignInPage.jsx";
 import SignUp from "./pages/SignUpPage.jsx";
+import UserCats from "./pages/UserCatsPage.jsx";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/cat/:id" element={<CatPage />} />
           <Route path="/create-cat" element={<CreateCat />} />
+          <Route path="/cats/me" element={<UserCats />} />
         </Routes>
       </UserProvider>
     </BrowserRouter>

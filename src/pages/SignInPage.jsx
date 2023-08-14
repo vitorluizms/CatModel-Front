@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import styled from "styled-components";
 import { UserContext } from "../Contexts/userContext";
-import TopBar from "../components/TopBar";
+import NavBar from "../components/NavBar";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
@@ -50,7 +50,7 @@ export default function SignIn() {
   };
   return (
     <>
-      <TopBar />
+      <NavBar />
       <Container loading={loading}>
         <section>
           <StyledIcon />

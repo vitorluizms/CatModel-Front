@@ -1,10 +1,10 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { TailSpin } from "react-loader-spinner";
-import { useParams } from "react-router-dom";
-import { toast } from "react-toastify";
-import styled from "styled-components";
-import NavBar from "../components/NavBar";
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { TailSpin } from 'react-loader-spinner';
+import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import styled from 'styled-components';
+import NavBar from '../components/NavBar';
 
 export default function CatPage() {
   const { id } = useParams();
@@ -13,20 +13,19 @@ export default function CatPage() {
     getCatById();
   }, []);
   const getCatById = () => {
-    console.log(id);
     axios
       .get(`${import.meta.env.VITE_API_URL}/cat/${id}`)
-      .then((response) => {
+      .then(response => {
         setCat(response.data);
       })
-      .catch((response) =>
+      .catch(response =>
         toast.error(response.reponse.data, {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: false,
           pauseOnHover: true,
-        })
+        }),
       );
   };
   if (cat.length === 0)
@@ -100,7 +99,7 @@ const Container = styled.main`
       }
 
       h1 {
-        font-family: "Comic Neue", cursive;
+        font-family: 'Comic Neue', cursive;
         color: #000;
         font-size: 20px;
         font-weight: 700;
@@ -109,7 +108,7 @@ const Container = styled.main`
 
       ul {
         li {
-          font-family: "Comic Neue", cursive;
+          font-family: 'Comic Neue', cursive;
           color: #000;
           font-size: 13px;
           font-weight: 700;
@@ -123,7 +122,7 @@ const Container = styled.main`
       }
 
       span {
-        font-family: "Comic Neue", cursive;
+        font-family: 'Comic Neue', cursive;
         color: #000;
         font-size: 13px;
         font-weight: 700;
@@ -132,7 +131,7 @@ const Container = styled.main`
       }
 
       p {
-        font-family: "Comic Neue", cursive;
+        font-family: 'Comic Neue', cursive;
         color: #000;
         font-size: 13px;
         font-weight: 700;

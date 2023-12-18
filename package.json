@@ -8,8 +8,8 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "precommit": "lint-staged",
-    "prepare": "chmod +x .husky/pre-commit"
+    "precommit": "chmod +x .husky/pre-commit",
+    "prepare": "husky install"
   },
   "dependencies": {
     "animate.css": "^4.1.1",

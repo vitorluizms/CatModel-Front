@@ -4,6 +4,9 @@ WORKDIR /app
 
 COPY . .
 
+# Define a variável de ambiente VITE_API_URL
+ENV VITE_API_URL=https://cat-model.vercel.app
+
 RUN npm install
 
 RUN npm run build

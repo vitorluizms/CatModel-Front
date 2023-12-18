@@ -1,11 +1,11 @@
-import axios from "axios";
-import { useContext, useEffect, useState } from "react";
-import { TailSpin } from "react-loader-spinner";
-import { toast } from "react-toastify";
-import styled from "styled-components";
-import { UserContext } from "../Contexts/userContext";
-import NavBar from "../components/NavBar";
-import CatContainer from "./CatContainer.jsx";
+import axios from 'axios';
+import { useContext, useEffect, useState } from 'react';
+import { TailSpin } from 'react-loader-spinner';
+import { toast } from 'react-toastify';
+import styled from 'styled-components';
+import { UserContext } from '../Contexts/userContext';
+import NavBar from '../components/NavBar';
+import CatContainer from './CatContainer.jsx';
 
 export default function Home() {
   const { user, setUser } = useContext(UserContext);
@@ -15,8 +15,8 @@ export default function Home() {
   const getCats = () => {
     axios
       .get(`${import.meta.env.VITE_API_URL}/cats`)
-      .then((response) => setCats(response.data))
-      .catch((response) => {
+      .then(response => setCats(response.data))
+      .catch(response => {
         toast.error(response.reponse.data, {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 3000,
@@ -27,7 +27,7 @@ export default function Home() {
       });
   };
 
-  if (cats.length === 0)
+  if (cats.length === 0) {
     return (
       <>
         <NavBar />
@@ -36,18 +36,20 @@ export default function Home() {
         </Container>
       </>
     );
-  return (
-    <>
-      <NavBar />
-      <Container>
-        <section>
-          {cats.map((cat) => (
-            <CatContainer cat={cat} key={cat.id} />
-          ))}
-        </section>
-      </Container>
-    </>
-  );
+  } else {
+    return (
+      <>
+        <NavBar />
+        <Container>
+          <section>
+            {cats.map(cat => (
+              <CatContainer cat={cat} key={cat.id} />
+            ))}
+          </section>
+        </Container>
+      </>
+    );
+  }
 }
 
 const Container = styled.main`

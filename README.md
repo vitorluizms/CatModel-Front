@@ -60,6 +60,18 @@ Para usar, siga estas etapas:
 
 Ou acesse o deploy!
 
+## 🐋 Docker
+
+O projeto está dockerizado e a imagem está no DockerHub, disponível no link: `https://hub.docker.com/repository/docker/vitorluizms/catmodels/general`
+
+Como baixar e usar a imagem: 
+
+- Certifique-se de ter o Docker instalado na máquina;
+- Execute o comando `docker pull vitorluizms/catmodels` para baixar a imagem;
+- Execute o comando `docker run -d --name <NOME DO CONTAINER> -p <PORTA DESEJADA>:80 vitorluiz/catmodels` para rodar o container a da imagem;
+- A imagem já possui o .env configurado com o link da API;
+- Agora é só abrir o navegador na rota `localhost:<PORTA DESEJADA>`, substitua a porta que você escolheu ao rodar o container.
+
 ## 📞 Contatos
 
 linkedin: `https://www.linkedin.com/in/vitorluizmartins/`

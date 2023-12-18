@@ -11,7 +11,7 @@ Essa é a API RESTful para à uma agência de gatos modelos, nela é possível c
 
 ## 🌐 Deploy
 
-[Link do deploy](cat-model.vercel.app)
+[Link do deploy](https://cat-model.vercel.app)
 
 ## 💻 Pré-requisitos
 
@@ -19,7 +19,7 @@ Antes de começar, verifique se você atendeu aos seguintes requisitos:
 
 - Node.js: v18.16.1 (Utilizado no desenvolvimento);
 - NPM: v9.5.1 (Utilizado no desenvolvimento);
-- 
+-
 - ## 🚀 Instalação
 
 Para instalar o Fast Food API, siga estas etapas:
@@ -28,7 +28,7 @@ Para instalar o Fast Food API, siga estas etapas:
 2. Acesse o diretório do projeto: `cd CatModel-Front`;
 3. Instale as dependências: `npm install` ou `npm i`.
 
- ## 🔧 Tecnologias
+## 🔧 Tecnologias
 
 Para a construção do projeto foi utilizado as seguintes tecnologias:
 

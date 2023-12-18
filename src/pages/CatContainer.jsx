@@ -1,6 +1,6 @@
-import "animate.css";
-import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import 'animate.css';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
 export default function CatContainer(props) {
   const { mainPic, name, id } = props.cat;
@@ -11,8 +11,7 @@ export default function CatContainer(props) {
   };
 
   return (
-    <Container
-    >
+    <Container>
       <figure onClick={navigateToCatPage}>
         <img src={mainPic} alt={name} />
       </figure>
@@ -38,7 +37,7 @@ const Container = styled.article`
     padding: 10px;
     h1 {
       width: auto;
-      font-family: "Comic Neue", cursive;
+      font-family: 'Comic Neue', cursive;
       color: #000;
       font-size: 13px;
       font-weight: 700;
@@ -74,7 +73,7 @@ const Container = styled.article`
     border-radius: 7px;
     border: none;
 
-    font-family: "Comic Neue", cursive;
+    font-family: 'Comic Neue', cursive;
     color: #fff;
     font-size: 13px;
     font-weight: 700;
